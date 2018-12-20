@@ -4,7 +4,7 @@
         <h1>Switch power operations</h1>
         <div class="power__current-status page-header">
             <h2 class="inline h4">Current status</h2>
-            <div class="power__status-log inline float-right">Last power operation at <span class="courier-bold">{{power_time | localeDate}}</span></div>
+            <div class="power__status-log inline float-right">Last power operation at <span class="courier-bold">{{power_time | date:'medium'}}</span></div>
         </div>
     </div>
     <div class="row column">
@@ -23,12 +23,12 @@
             <button id="power__power-on" class="btn-secondary inline" ng-click="powerOn()" role="button" ng-disabled="dataService.server_unreachable"><img src="../../assets/images/icon-power.svg" alt="power on" aria-hidden="true">Power on</button>
             <p class="inline">Attempts to power on switch</p>
         </div>
-		
+		<!--  Modified by USISH Steven 20181130  start -->
 		<div class="row column power-option" ng-hide="dataService.server_state == 'Off' || dataService.server_state == 'Unreachable'" ng-class="{disabled: dataService.server_unreachable || (confirm && !orderly_confirm) || dataService.loading, transitionAll: confirm && orderly_confirm}">
             <button id="power__soft-shutdown" class="btn-secondary inline" ng-click="orderlyShutdownConfirm()" role="button" ng-disabled="dataService.server_unreachable"><img aria-hidden="true" src="../../assets/images/icon-power.svg" />Power off</button>
             <p class="inline">Attempts to power off switch</p>
             <confirm title="orderly shutdown" confirm="orderly_confirm" ng-show="orderly_confirm" cancel="orderlyShutdownCancel" callback="orderlyShutdown"></confirm>
-        </div>
+        </div>		
 		
         <!-- Power reboot/shutdown options : when server is off all of these are hidden. When one option is selected, the others are disabled. 
         <div class="row column power-option" ng-hide="dataService.server_state == 'Off' || dataService.server_state == 'Unreachable'" ng-class="{disabled: dataService.server_unreachable || (confirm && !warmboot_confirm) || dataService.loading, transitionAll: confirm && warmboot_confirm}">
@@ -48,5 +48,6 @@
             <confirm title="immediate shutdown" confirm="immediately_confirm" ng-show="immediately_confirm" cancel="immediatelyShutdownCancel" callback="immediateShutdown"></confirm>
         </div> -->
 		
+		<!--  Modified by USISH Steven 20181130  end -->
     </div>
 </div>
