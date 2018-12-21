@@ -11,48 +11,15 @@
         <h1>Virtual sensor information</h1>
     </div>
 	
-	<!--<section id="ssd-categories" class="row column" ng-show="ssdInfo.length">
-		<div class="row column header-row">
-			<div class="column large-12 header__actions-bar">
-				<p class="inline ssd__title">SSD</p>
-				<p class="inline ssd__reading">Address</p>
-				<p class="inline ssd__reading">Type</p>
-				<p class="inline ssd__reading">LinkSpeed</p>
-				<p class="inline ssd__reading">Status</p>
-				<p class="inline ssd__reading">CfgWidth</p>
-				<p class="inline ssd__reading">LinkWidth</p>
-				<p class="inline ssd__reading">ParId</p>
-				<p class="inline ssd__reading">Inserted</p>
-				<p class="inline ssd__reading">LinkStatus</p>
-			</div>
-		</div>
-		<div class="ssd__readings-row" ng-repeat="ssd in ssdInfo">
-			<p class="inline ssd__title"><span class="icon"></span>{{ssd.title}}</p> 
-			<p class="inline ssd__reading"><span class="ssd__label">Address</span>{{ssd.ssd_addr}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">Type</span>{{ssd.ssd_type}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">LinkSpeed</span>{{ssd.link_sp}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">Status</span>{{ssd.status}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">CfgWidth</span>{{ssd.cfg_wd}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">LinkWidth</span>{{ssd.link_wd}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">ParId</span>{{ssd.par_id}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">Inserted</span>{{ssd.inserted}}</p>
-			<p class="inline ssd__reading"><span class="ssd__label">LinkStatus</span>{{ssd.link_st}}</p>
-		</div>
-	</section> -->
-	
 	<div class="row column header-row">
 		<table align="center" bordercolor="#FFFFFF">
-			<tr height=100>
-				<td width=150 bgcolor="#FF88C2" ng-mouseover="changeStatus('ssd')"></td>
-				<td width=150 bgcolor="#FF8888" ng-mouseover="changeStatus('slot')"></td>
-				<td width=150 bgcolor="#B088FF" ng-mouseover="changeStatus('swconfig')"></td>
-				<td width=150 bgcolor="#66FF66" ng-mouseover="changeStatus('s9546')"></td>
-			</tr>
-			<tr height=100>
-				<td width=150 bgcolor="#77FFCC" ng-mouseover="changeStatus('cabledmod')"></td>
-				<td width=150 bgcolor="#DDFF77" ng-mouseover="changeStatus('swstatus')"></td>
-				<td width=150 bgcolor="#0000FF" ng-mouseover="changeStatus('ps')"></td>
-				<td width=150 bgcolor="#FF6666" ng-mouseover="changeStatus('cable')"></td>
+			<tr align="center" height=100>
+				<td width=100 bgcolor="#B088FF" ng-mouseover="changeStatus('ssd')">SSD information</td>
+				<td width=100 bgcolor="#B088FF" ng-mouseover="changeStatus('slot')">Slot information</td>
+				<td width=100 bgcolor="#B088FF" ng-mouseover="changeStatus('swconfig')">swconfig information</td>
+				<td width=100 bgcolor="#B088FF" ng-mouseover="changeStatus('s9546')">S9546 information</td>
+				<td width=100 bgcolor="#B088FF" ng-mouseover="changeStatus('swstatus')">swstatus information</td>
+				<td width=100 bgcolor="#B088FF" ng-mouseover="changeStatus('ps')">Power supply information</td>
 			</tr>
 		</table>
 	</div>
@@ -95,7 +62,7 @@
 	
 	<div class="row column header-row" ng-show="slotFlag == true">
 		<table  align="center" border="2" bordercolor="#0000FF">
-			<caption align=”center” font size="medium">Slot information </caption>
+			<caption align=”center” font size="medium">Slot information</caption>
 			<thead align=”center”>
 				<tr>
 					<th align=”center” font size="medium">Slot NO.</th>
@@ -113,7 +80,7 @@
 	
 	<div class="row column header-row" ng-show="s9546Flag == true">
 		<table  align="center" border="2" bordercolor="#0000FF">
-			<caption align=”center” font size="medium">S9546 information </caption>
+			<caption align=”center” font size="medium">S9546 information</caption>
 			<thead align=”center”>
 				<tr>
 					<th align=”center” font size="medium">S9546 Title</th>

@@ -33,7 +33,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = true;
 			  $scope.slotFlag = false;
 			  $scope.s9546Flag = false;
-			  $scope.cabledmodFlag = false;
+			  //$scope.cabledmodFlag = false;
 			  $scope.swconfigFlag = false;
 			  $scope.swstatusFlag = false;
 			  $scope.psFlag = false;
@@ -41,7 +41,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = false;
 			  $scope.slotFlag = true;
 			  $scope.s9546Flag = false;
-			  $scope.cabledmodFlag = false;
+			  //$scope.cabledmodFlag = false;
 			  $scope.swconfigFlag = false;
 			  $scope.swstatusFlag = false;
 			  $scope.psFlag = false;
@@ -49,7 +49,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = false;
 			  $scope.slotFlag = false;
 			  $scope.s9546Flag = true;
-			  $scope.cabledmodFlag = false;
+			  //$scope.cabledmodFlag = false;
 			  $scope.swconfigFlag = false;
 			  $scope.swstatusFlag = false;
 			  $scope.psFlag = false;
@@ -57,7 +57,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = false;
 			  $scope.slotFlag = false;
 			  $scope.s9546Flag = false;
-			  $scope.cabledmodFlag = true;
+			  //$scope.cabledmodFlag = true;
 			  $scope.swconfigFlag = false;
 			  $scope.swstatusFlag = false;
 			  $scope.psFlag = false;
@@ -65,7 +65,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = false;
 			  $scope.slotFlag = false;
 			  $scope.s9546Flag = false;
-			  $scope.cabledmodFlag = false;
+			  //$scope.cabledmodFlag = false;
 			  $scope.swconfigFlag = true;
 			  $scope.swstatusFlag = false;
 			  $scope.psFlag = false;
@@ -73,7 +73,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = false;
 			  $scope.slotFlag = false;
 			  $scope.s9546Flag = false;
-			  $scope.cabledmodFlag = false;
+			  //$scope.cabledmodFlag = false;
 			  $scope.swconfigFlag = false;
 			  $scope.swstatusFlag = true;
 			  $scope.psFlag = false;
@@ -81,7 +81,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = false;
 			  $scope.slotFlag = false;
 			  $scope.s9546Flag = false;
-			  $scope.cabledmodFlag = false;
+			  //$scope.cabledmodFlag = false;
 			  $scope.swconfigFlag = false;
 			  $scope.swstatusFlag = false;
 			  $scope.psFlag = true;
@@ -89,7 +89,7 @@ window.angular && (function(angular) {
 			  $scope.ssdFlag = false;
 			  $scope.slotFlag = false;
 			  $scope.s9546Flag = false;
-			  $scope.cabledmodFlag = false;
+			  //$scope.cabledmodFlag = false;
 			  $scope.swconfigFlag = false;
 			  $scope.swstatusFlag = false;
 			  $scope.psFlag = false;
