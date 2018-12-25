@@ -104,16 +104,27 @@ window.angular && (function(angular) {
 			var ssdTypeText = "", ssdAddrText = "", stateText = "", linkSpeedText = "", linkWidthText = "";
 			var cfgWidthText = "", linkStatusText = "", InsertedText = "", parIdText = "", ReseredText = "";
 			for(var num = 0; num < ssdData.length; num++) {
-				ssdAddr = ssdData[num].Value >>> 27 & 0x1f;
-				ssdType = ssdData[num].Value >>> 24 & 0x07;
-				linkSpeed = ssdData[num].Value >>> 20 & 0x0f;
-				state = ssdData[num].Value >>> 16 & 0x0f;
-				cfgWidth = ssdData[num].Value >>> 12 & 0x0f;
-				linkWidth = ssdData[num].Value >>> 8 & 0x0f;
-				Resered = ssdData[num].Value >>> 6 & 0x03;
-				parId = ssdData[num].Value >>> 2 & 0x0f;
-				Inserted = ssdData[num].Value >>> 1 & 0x01;
-				linkStatus = ssdData[num].Value & 0x01;				
+				//ssdAddr = ssdData[num].Value >>> 27 & 0x1f;
+				//ssdType = ssdData[num].Value >>> 24 & 0x07;
+				//linkSpeed = ssdData[num].Value >>> 20 & 0x0f;
+				//state = ssdData[num].Value >>> 16 & 0x0f;
+				//cfgWidth = ssdData[num].Value >>> 12 & 0x0f;
+				//linkWidth = ssdData[num].Value >>> 8 & 0x0f;
+				//Resered = ssdData[num].Value >>> 6 & 0x03;
+				//parId = ssdData[num].Value >>> 2 & 0x0f;
+				//Inserted = ssdData[num].Value >>> 1 & 0x01;
+				//linkStatus = ssdData[num].Value & 0x01;
+
+				ssdType = ssdData[num].Value & 0x07;
+				ssdAddr = ssdData[num].Value >>> 3 & 0x1f;
+				state = ssdData[num].Value >>> 8 & 0x0f;
+				linkSpeed = ssdData[num].Value >>> 12 & 0x0f;
+				linkWidth = ssdData[num].Value >>> 16 & 0x0f;
+				cfgWidth = ssdData[num].Value >>> 20 & 0x0f;
+				linkStatus = ssdData[num].Value >>> 24 & 0x01;
+				Inserted = ssdData[num].Value >>> 25 & 0x01;
+				parId = ssdData[num].Value >>> 26 & 0x0f;
+				Resered = ssdData[num].Value >>> 30 & 0x03;
 				
 				if(ssdType == 0){
 					ssdTypeText = "U.2";
