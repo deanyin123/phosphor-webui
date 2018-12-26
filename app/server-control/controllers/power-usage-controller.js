@@ -126,10 +126,12 @@ window.angular && (function(angular) {
 				parId = ssdData[num].Value >>> 26 & 0x0f;
 				Resered = ssdData[num].Value >>> 30 & 0x03;
 				
-				if(ssdType == 0){
+				if(ssdType == 1){
 					ssdTypeText = "U.2";
-				}else {
+				}else if(ssdType == 2){
 					ssdTypeText = "M.2";
+				}else{
+					ssdType = 0;
 				}
 				
 				switch(ssdAddr) {
@@ -310,20 +312,23 @@ window.angular && (function(angular) {
 					parIdText = "normal";
 				}
 				
-				$scope.ssdInfo.push(Object.assign(
-				{
-					ssd_addr: ssdAddrText,
-					ssd_type: ssdTypeText,
-					link_sp: linkSpeedText,
-					status: stateText,
-					cfg_wd: cfgWidthText,
-					link_wd: linkWidthText,
-					resered: ReseredText,
-					par_id: parIdText,
-					inserted: InsertedText,
-					link_st: linkStatusText,
-				}, 
-				{title: ssdData[num].title}));
+				if(ssdType == 1 || ssdType == 2){
+					$scope.ssdInfo.push(Object.assign(
+					{
+						ssd_addr: ssdAddrText,
+						ssd_type: ssdTypeText,
+						link_sp: linkSpeedText,
+						status: stateText,
+						cfg_wd: cfgWidthText,
+						link_wd: linkWidthText,
+						resered: ReseredText,
+						par_id: parIdText,
+						inserted: InsertedText,
+						link_st: linkStatusText,
+					}, 
+					{title: ssdData[num].title}));
+				}
+				
 			}
 			
 	    };	 
