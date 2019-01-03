@@ -104,16 +104,6 @@ window.angular && (function(angular) {
 			var ssdTypeText = "", ssdAddrText = "", stateText = "", linkSpeedText = "", linkWidthText = "";
 			var cfgWidthText = "", linkStatusText = "", InsertedText = "", parIdText = "", ReseredText = "";
 			for(var num = 0; num < ssdData.length; num++) {
-				//ssdAddr = ssdData[num].Value >>> 27 & 0x1f;
-				//ssdType = ssdData[num].Value >>> 24 & 0x07;
-				//linkSpeed = ssdData[num].Value >>> 20 & 0x0f;
-				//state = ssdData[num].Value >>> 16 & 0x0f;
-				//cfgWidth = ssdData[num].Value >>> 12 & 0x0f;
-				//linkWidth = ssdData[num].Value >>> 8 & 0x0f;
-				//Resered = ssdData[num].Value >>> 6 & 0x03;
-				//parId = ssdData[num].Value >>> 2 & 0x0f;
-				//Inserted = ssdData[num].Value >>> 1 & 0x01;
-				//linkStatus = ssdData[num].Value & 0x01;
 
 				ssdType = ssdData[num].Value & 0x07;
 				ssdAddr = ssdData[num].Value >>> 3 & 0x1f;
@@ -219,7 +209,7 @@ window.angular && (function(angular) {
 						stateText = "absent";
 						break;
 					case 2:
-						stateText = "poweroff";
+						stateText = "power off";
 						break;
 					case 3:
 						stateText = "not link";
@@ -228,7 +218,7 @@ window.angular && (function(angular) {
 						stateText = "unbind to a P2P";
 						break;
 					case 5:
-						stateText = "poweron";
+						stateText = "power on";
 						break;	
 					case 6:
 						stateText = "Get status fail";
@@ -267,7 +257,7 @@ window.angular && (function(angular) {
 						linkWidthText = "not link";
 						break;
 					case 1:
-						linkWidthText = " x1.";
+						linkWidthText = "x1.";
 						break;
 					case 2:
 						linkWidthText = "x2.";
@@ -295,9 +285,9 @@ window.angular && (function(angular) {
 				}
 				
 				if(linkStatus == 0){
-					linkStatusText = "link fail";
+					linkStatusText = "fail";
 				}else{
-					linkStatusText = "link success";
+					linkStatusText = "success";
 				}
 				
 				if(Inserted == 0){
@@ -309,7 +299,8 @@ window.angular && (function(angular) {
 				if(parId == 0x0f){
 					parIdText = "partition info error";
 				}else{
-					parIdText = "normal";
+					parIdText = parId.toString();
+					console.log(parIdText);
 				}
 				
 				if(ssdType == 1 || ssdType == 2){
@@ -340,9 +331,9 @@ window.angular && (function(angular) {
 			for(var num = 0; num < slotData.length; num++) {
 				slotStatus = slotData[num].Value & 0x01;
 				if(slotStatus == 0){
-					slotStatusText = "status ok";
+					slotStatusText = "ok";
 				}else{
-					slotStatusText = "status fail";
+					slotStatusText = "fail";
 				}
 				
 				$scope.slotInfo.push(Object.assign(
@@ -357,9 +348,9 @@ window.angular && (function(angular) {
 			var stateText = "";
 			var state = s9546Data.Value & 0x01;
 			if(state == 0){
-				stateText = "status ok";
+				stateText = "ok";
 			}else{
-				stateText = "status fail";
+				stateText = "fail";
 			}
 			
 			$scope.s9546Info = Object.assign(
