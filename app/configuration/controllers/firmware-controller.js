@@ -15,13 +15,13 @@ window.angular && (function(angular) {
     function(
         $scope, $window, APIUtils, dataService, $location, $anchorScroll,
         Constants, $interval, $q, $timeout, $interpolate) {
-      $scope.dataService = dataService;
+        $scope.dataService = dataService;
 
       // Scroll to target anchor
-      $scope.gotoAnchor = function() {
-        $location.hash('upload');
-        $anchorScroll();
-      };
+        $scope.gotoAnchor = function() {
+			$location.hash('upload');
+			$anchorScroll();
+        };
 
       $scope.firmwares = [];
       $scope.bmcActiveVersion = '';
