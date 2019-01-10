@@ -298,13 +298,13 @@ window.angular && (function(angular) {
 			$scope.file_empty = false;
 		};
 
-        $scope.filters = {bmc: {imageType: 'BMC'}, host: {imageType: 'Host'}};
+        $scope.filters = {bmc: {imageType: 'BMC'}, Switch: {imageType: 'Switch'}};
 
         $scope.loadFirmwares = function() {
 			APIUtils.getFirmwares().then(function(result) {
 				$scope.firmwares = result.data;
-				//$scope.switchActiveVersion = result.bmcActiveVersion;
-				$scope.switchActiveVersion = result.hostActiveVersion;
+				//$scope.bmcActiveVersion = result.bmcActiveVersion;
+				$scope.switchActiveVersion = result.switchActiveVersion;
             });
         };
 

@@ -300,7 +300,7 @@ window.angular && (function(angular) {
 					parIdText = "partition info error";
 				}else{
 					parIdText = parId.toString();
-					console.log(parIdText);
+					//console.log(parIdText);
 				}
 				
 				if(ssdType == 1 || ssdType == 2){
