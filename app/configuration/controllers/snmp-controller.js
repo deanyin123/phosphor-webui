@@ -304,6 +304,8 @@ window.angular && (function(angular) {
 			APIUtils.getFirmwares().then(function(result) {
 				$scope.firmwares = result.data;
 				$scope.switchActiveVersion = result.hostActiveVersion;
+				console(result.data);
+				console(result.hostActiveVersion);
 				//$scope.switchActiveVersion = result.switchActiveVersion;
             });
         };
