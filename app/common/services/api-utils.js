@@ -986,6 +986,7 @@ window.angular && (function(angular) {
                     var data = [];
                     var isExtended = false;
                     var bmcActiveVersion = '';
+					//var switchActiveVersion = '';
                     var hostActiveVersion = '';
                     var imageType = '';
                     var extendedVersions = [];
@@ -1067,7 +1068,8 @@ window.angular && (function(angular) {
 
                         if (activationStatus == 'Functional' &&
                             imageType == 'Host') {
-                          hostActiveVersion = content.data[key].Version;
+                            hostActiveVersion = content.data[key].Version;
+							//switchActiveVersion = content.data[key].Version;
                         }
                       }
                     }
@@ -1075,7 +1077,8 @@ window.angular && (function(angular) {
                     deferred.resolve({
                       data: data,
                       bmcActiveVersion: bmcActiveVersion,
-                      hostActiveVersion: hostActiveVersion
+					  hostActiveVersion: hostActiveVersion;
+                      //switchActiveVersion: switchActiveVersion
                     });
                   },
                   function(error) {

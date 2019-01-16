@@ -7,16 +7,17 @@
 </div>
 
 <firmware-list title="Switch images" version="switchActiveVersion" firmwares="firmwares" filter-by="filters.Switch"></firmware-list>
+<!--<firmware-list title="Server images" version="hostActiveVersion" firmwares="firmwares" filter-by="filters.host"></firmware-list> -->
 
 <div class="row column" id="upload">
 	<div class="column small-12 page-header">
-		<h2 class="inline h3 bold">Specify image file location</h2>
+		<h2 class="inline h3 bold">Switch image file location</h2>
 	</div>
 	<form id="firmware__upload-form" role="form" class="firmware__upload-form">
 		<p>Specify an image file located on your workstation or a TFTP server. An image file contain switch firmware. The image that you upload will be unpacked from the image file and added to the appropriate list above.</p>
 		<div class=" column firmware__upload-station">
 			<h3 class="h4 bold">Upload image file from workstation</h3>
-			<p>Select the image file saved on the workstation storage medium to upload to the Switch.</p>
+			<p>Select the image file saved on the workstation storage medium to upload.</p>
 			<label for="file-upload" class="inline firmware__upload-chooser">
 				<input id="file-upload" type="file" file="file" class="hide" onchange="angular.element(this).scope().fileNameChanged()"/>
 				<span class="button btn-secondary inline">Choose a file</span>
@@ -28,7 +29,7 @@
 		</div>
 		<div class=" column firmware__upload-tftp">
 			<h3 class="h4 bold">Download image file from TFTP server</h3>
-			<p>Specify both the TFTP server IP address and the image file name stored on it to download to the Switch.</p>
+			<p>Specify both the TFTP server IP address and the image file name stored on it to download.</p>
 			<fieldset>
 				<div class="row">
 					<div class="column small-12 large-4">
