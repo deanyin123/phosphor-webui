@@ -1077,7 +1077,7 @@ window.angular && (function(angular) {
                     deferred.resolve({
                       data: data,
                       bmcActiveVersion: bmcActiveVersion,
-					  hostActiveVersion: hostActiveVersion;
+					  hostActiveVersion: hostActiveVersion
                       //switchActiveVersion: switchActiveVersion
                     });
                   },
