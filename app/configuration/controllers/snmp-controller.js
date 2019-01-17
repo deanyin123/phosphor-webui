@@ -304,12 +304,37 @@ window.angular && (function(angular) {
 			APIUtils.getFirmwares().then(function(result) {
 				$scope.firmwares = result.data;
 				$scope.switchActiveVersion = result.hostActiveVersion;
-				console(result.data);
-				console(result.hostActiveVersion);
 				//$scope.switchActiveVersion = result.switchActiveVersion;
             });
         };
+		
+		$scope.runImage = function(imageId, imageVersion, imageType) {
+			$scope.activate_image_id = imageId;
+			$scope.activate_image_version = imageVersion;
+			$scope.activate_image_type = imageType;
+			$scope.activate_confirm = true;
+        };
 
+		$scope.runConfirmed = function() {
+			APIUtils.runImage($scope.activate_image_id)
+            .then(
+                function(state) {  ///run sucdess
+                    $scope.loadFirmwares();
+                    return state;
+                },
+                function(error) {  ///run fail
+                    $scope.displayError({
+						modal_title: 'Error during activation call',
+						title: 'Error during activation call',
+						desc: JSON.stringify(error.data),
+						type: 'Error'
+                    });
+                })
+            
+			$scope.activate_confirm = false;
+        };
+		
+		
        $scope.loadFirmwares();
     }
   ]);
