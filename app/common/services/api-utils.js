@@ -1568,6 +1568,94 @@ window.angular && (function(angular) {
                 return response.data;
               });
         },
+		
+		/**/
+		getSwitchActiveVersion: function(callback) {
+          $http({
+            method: 'GET',
+            url: DataService.getHost() +
+                '/xyz/openbmc_project/sensors/switch/version',
+            withCredentials: true
+          })
+              .then(
+                  function(response) {
+                    var json = JSON.stringify(response.data);
+                    var content = JSON.parse(json);
+                    var dataClone = JSON.parse(JSON.stringify(content.data));
+                    var sensorData = [];
+                    var title = '';
+                    var tempKeyParts = [];
+                    
+                    for (var key in content.data) {
+                      if (content.data.hasOwnProperty(key) &&
+                          content.data[key].hasOwnProperty('Unit')) {
+							  
+                        tempKeyParts = key.split('/');
+                        title = tempKeyParts.pop();
+                        title = tempKeyParts.pop() + '_' + title;
+                        title = title.split('_')
+                                    .map(function(item) {
+                                      return item.toLowerCase()
+                                                 .charAt(0)
+                                                 .toUpperCase() +
+                                          item.slice(1);
+                                    })
+                                    .reduce(function(prev, el) {
+                                      return prev + ' ' + el;
+                                    });
+
+                        content.data[key].Value = getScaledValue(
+                            content.data[key].Value, content.data[key].Scale);
+
+                        sensorData.push(Object.assign(
+                            {
+                              path: key,
+                              selected: false,
+                              confirm: false,
+                              copied: false,
+                              title: title,
+                              unit:
+                                  Constants
+                                      .SENSOR_UNIT_MAP[content.data[key].Unit],
+                              
+                              original_data:
+                                  {key: key, value: content.data[key]}
+                            },
+                            content.data[key]));
+                      }
+                    }
+
+                    callback(sensorData, dataClone);
+                  },
+                  function(error) {
+                    console.log(error);
+                  });
+        },
+		
+		runImage: function(imageId) {
+          var deferred = $q.defer();
+          $http({
+            method: 'PUT',
+            url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/updata',
+            withCredentials: true,
+            data:
+                JSON.stringify({'data': '1'})
+          })
+              .then(
+                  function(response) {
+                    var json = JSON.stringify(response.data);
+                    var content = JSON.parse(json);
+                    deferred.resolve(content);
+                  },
+                  function(error) {
+                    console.log(error);
+                    deferred.reject(error);
+                  });
+
+          return deferred.promise;
+        },
+		/**/
+		
       };
       return SERVICE;
     }

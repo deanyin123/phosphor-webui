@@ -303,9 +303,24 @@ window.angular && (function(angular) {
         $scope.loadFirmwares = function() {
 			APIUtils.getFirmwares().then(function(result) {
 				$scope.firmwares = result.data;
-				$scope.switchActiveVersion = result.hostActiveVersion;
-				//$scope.switchActiveVersion = result.switchActiveVersion;
+				$scope.switchActiveVersion = result.hostActiveVersion;//?
             });
+        };
+		
+		
+		$scope.loadSwitchActiveVersion = function() {
+			APIUtils.getSwitchActiveVersion(function(data, originalData) {
+				console.log(data);
+				for(var i = 0; i < data.length; i++){
+					if(data[i].title == "Switch Version"){
+						$scope.switchActiveVersion = data[i].Value;
+					}else{
+						continue;
+					}
+				}
+				
+			});
+			
         };
 		
 		$scope.runImage = function(imageId, imageVersion, imageType) {
@@ -320,6 +335,7 @@ window.angular && (function(angular) {
             .then(
                 function(state) {  ///run sucdess
                     $scope.loadFirmwares();
+					$scope.loadSwitchActiveVersion();
                     return state;
                 },
                 function(error) {  ///run fail
