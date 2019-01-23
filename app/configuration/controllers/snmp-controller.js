@@ -350,7 +350,7 @@ window.angular && (function(angular) {
 		
 		
        $scope.loadFirmwares();
-	   //$scope.loadSwitchActiveVersion();
+	   $scope.loadSwitchActiveVersion();
     }
   ]);
 })(angular);
