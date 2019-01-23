@@ -1583,13 +1583,73 @@ window.angular && (function(angular) {
                     var content = JSON.parse(json);
                     var dataClone = JSON.parse(JSON.stringify(content.data));
                     var sensorData = [];
+                    var severity = {};
                     var title = '';
                     var tempKeyParts = [];
-                    
+                    var order = 0;
+                    var customOrder = 0;
+
+                    function getSensorStatus(reading) {
+                      var severityFlags = {
+                        critical: false,
+                        warning: false,
+                        normal: false
+                      },
+                          severityText = '', order = 0;
+
+                      if (reading.hasOwnProperty('CriticalLow') &&
+                          reading.Value < reading.CriticalLow) {
+                        severityFlags.critical = true;
+                        severityText = 'critical';
+                        order = 2;
+                      } else if (
+                          reading.hasOwnProperty('CriticalHigh') &&
+                          reading.Value > reading.CriticalHigh) {
+                        severityFlags.critical = true;
+                        severityText = 'critical';
+                        order = 2;
+                      } else if (
+                          reading.hasOwnProperty('CriticalLow') &&
+                          reading.hasOwnProperty('WarningLow') &&
+                          reading.Value >= reading.CriticalLow &&
+                          reading.Value <= reading.WarningLow) {
+                        severityFlags.warning = true;
+                        severityText = 'warning';
+                        order = 1;
+                      } else if (
+                          reading.hasOwnProperty('WarningHigh') &&
+                          reading.hasOwnProperty('CriticalHigh') &&
+                          reading.Value >= reading.WarningHigh &&
+                          reading.Value <= reading.CriticalHigh) {
+                        severityFlags.warning = true;
+                        severityText = 'warning';
+                        order = 1;
+                      } else {
+                        severityFlags.normal = true;
+                        severityText = 'normal';
+                      }
+                      return {
+                        flags: severityFlags,
+                        severityText: severityText,
+                        order: order
+                      };
+                    }
+
                     for (var key in content.data) {
                       if (content.data.hasOwnProperty(key) &&
                           content.data[key].hasOwnProperty('Unit')) {
-							  
+                        severity = getSensorStatus(content.data[key]);
+
+                        if (!content.data[key].hasOwnProperty('CriticalLow')) {
+                          content.data[key].CriticalLow = '--';
+                          content.data[key].CriticalHigh = '--';
+                        }
+
+                        if (!content.data[key].hasOwnProperty('WarningLow')) {
+                          content.data[key].WarningLow = '--';
+                          content.data[key].WarningHigh = '--';
+                        }
+
                         tempKeyParts = key.split('/');
                         title = tempKeyParts.pop();
                         title = tempKeyParts.pop() + '_' + title;
@@ -1606,6 +1666,25 @@ window.angular && (function(angular) {
 
                         content.data[key].Value = getScaledValue(
                             content.data[key].Value, content.data[key].Scale);
+                        content.data[key].CriticalLow = getScaledValue(
+                            content.data[key].CriticalLow,
+                            content.data[key].Scale);
+                        content.data[key].CriticalHigh = getScaledValue(
+                            content.data[key].CriticalHigh,
+                            content.data[key].Scale);
+                        content.data[key].WarningLow = getScaledValue(
+                            content.data[key].WarningLow,
+                            content.data[key].Scale);
+                        content.data[key].WarningHigh = getScaledValue(
+                            content.data[key].WarningHigh,
+                            content.data[key].Scale);
+                        if (Constants.SENSOR_SORT_ORDER.indexOf(
+                                content.data[key].Unit) > -1) {
+                          customOrder = Constants.SENSOR_SORT_ORDER.indexOf(
+                              content.data[key].Unit);
+                        } else {
+                          customOrder = Constants.SENSOR_SORT_ORDER_DEFAULT;
+                        }
 
                         sensorData.push(Object.assign(
                             {
@@ -1617,7 +1696,20 @@ window.angular && (function(angular) {
                               unit:
                                   Constants
                                       .SENSOR_UNIT_MAP[content.data[key].Unit],
-                              
+                              severity_flags: severity.flags,
+                              status: severity.severityText,
+                              order: severity.order,
+                              custom_order: customOrder,
+                              search_text:
+                                  (title + ' ' + content.data[key].Value + ' ' +
+                                   Constants.SENSOR_UNIT_MAP[content.data[key]
+                                                                 .Unit] +
+                                   ' ' + severity.severityText + ' ' +
+                                   content.data[key].CriticalLow + ' ' +
+                                   content.data[key].CriticalHigh + ' ' +
+                                   content.data[key].WarningLow + ' ' +
+                                   content.data[key].WarningHigh + ' ')
+                                      .toLowerCase(),
                               original_data:
                                   {key: key, value: content.data[key]}
                             },

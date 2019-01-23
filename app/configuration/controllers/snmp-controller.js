@@ -303,7 +303,7 @@ window.angular && (function(angular) {
         $scope.loadFirmwares = function() {
 			APIUtils.getFirmwares().then(function(result) {
 				$scope.firmwares = result.data;
-				$scope.switchActiveVersion = result.hostActiveVersion;//?
+				//$scope.switchActiveVersion = result.hostActiveVersion;
             });
         };
 		
