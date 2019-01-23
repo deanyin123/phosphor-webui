@@ -318,9 +318,7 @@ window.angular && (function(angular) {
 						continue;
 					}
 				}
-				
 			});
-			
         };
 		
 		$scope.runImage = function(imageId, imageVersion, imageType) {
@@ -352,6 +350,7 @@ window.angular && (function(angular) {
 		
 		
        $scope.loadFirmwares();
+	   //$scope.loadSwitchActiveVersion();
     }
   ]);
 })(angular);

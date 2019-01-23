@@ -1569,7 +1569,7 @@ window.angular && (function(angular) {
               });
         },
 		
-		/**/
+		/*  Modified by USISH Steven 20190122 start */
 		getSwitchActiveVersion: function(callback) {
           $http({
             method: 'GET',
@@ -1654,7 +1654,7 @@ window.angular && (function(angular) {
 
           return deferred.promise;
         },
-		/**/
+		/*  Modified by USISH Steven 20190122 end */
 		
       };
       return SERVICE;
