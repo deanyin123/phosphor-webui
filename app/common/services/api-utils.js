@@ -1718,11 +1718,13 @@ window.angular && (function(angular) {
                       }
                     }*/
 					
-					versionInfo = content.data[key].Value;
 					console.log(content);
-					console.log(content.data[key]);
-					console.log(content.data[key].Value);
-					console.log(versionInfo);
+					for (var key in content.data){							
+						versionInfo = content.data[key].Value;
+						console.log(content.data[key]);
+						console.log(content.data[key].Value);
+						console.log(versionInfo);
+					}
                     callback(versionInfo, dataClone);
                   },
                   function(error) {
