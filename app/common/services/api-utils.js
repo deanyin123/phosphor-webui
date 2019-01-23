@@ -1588,8 +1588,9 @@ window.angular && (function(angular) {
                     var tempKeyParts = [];
                     var order = 0;
                     var customOrder = 0;
+					var versionInfo = '';
 
-                    function getSensorStatus(reading) {
+                    /*function getSensorStatus(reading) {
                       var severityFlags = {
                         critical: false,
                         warning: false,
@@ -1715,9 +1716,14 @@ window.angular && (function(angular) {
                             },
                             content.data[key]));
                       }
-                    }
-
-                    callback(sensorData, dataClone);
+                    }*/
+					
+					versionInfo = content.data[key].Value;
+					console.log(content);
+					console.log(content.data[key]);
+					console.log(content.data[key].Value);
+					console.log(versionInfo);
+                    callback(versionInfo, dataClone);
                   },
                   function(error) {
                     console.log(error);
