@@ -310,15 +310,8 @@ window.angular && (function(angular) {
 		
 		$scope.loadSwitchActiveVersion = function() {
 			APIUtils.getSwitchActiveVersion(function(data, originalData) {
-				console.log(data);
+				//console.log(data);
 				$scope.switchActiveVersion = data;
-				/*for(var i = 0; i < data.length; i++){
-					if(data[i].title == "Switch Version"){
-						$scope.switchActiveVersion = data[i].Value;
-					}else{
-						continue;
-					}
-				}*/
 			});
         };
 		

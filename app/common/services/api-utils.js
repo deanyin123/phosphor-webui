@@ -1582,153 +1582,14 @@ window.angular && (function(angular) {
                     var json = JSON.stringify(response.data);
                     var content = JSON.parse(json);
                     var dataClone = JSON.parse(JSON.stringify(content.data));
-                    var sensorData = [];
-                    var severity = {};
-                    var title = '';
-                    var tempKeyParts = [];
-                    var order = 0;
-                    var customOrder = 0;
 					var versionInfo = '';
 
-                    /*function getSensorStatus(reading) {
-                      var severityFlags = {
-                        critical: false,
-                        warning: false,
-                        normal: false
-                      },
-                          severityText = '', order = 0;
-
-                      if (reading.hasOwnProperty('CriticalLow') &&
-                          reading.Value < reading.CriticalLow) {
-                        severityFlags.critical = true;
-                        severityText = 'critical';
-                        order = 2;
-                      } else if (
-                          reading.hasOwnProperty('CriticalHigh') &&
-                          reading.Value > reading.CriticalHigh) {
-                        severityFlags.critical = true;
-                        severityText = 'critical';
-                        order = 2;
-                      } else if (
-                          reading.hasOwnProperty('CriticalLow') &&
-                          reading.hasOwnProperty('WarningLow') &&
-                          reading.Value >= reading.CriticalLow &&
-                          reading.Value <= reading.WarningLow) {
-                        severityFlags.warning = true;
-                        severityText = 'warning';
-                        order = 1;
-                      } else if (
-                          reading.hasOwnProperty('WarningHigh') &&
-                          reading.hasOwnProperty('CriticalHigh') &&
-                          reading.Value >= reading.WarningHigh &&
-                          reading.Value <= reading.CriticalHigh) {
-                        severityFlags.warning = true;
-                        severityText = 'warning';
-                        order = 1;
-                      } else {
-                        severityFlags.normal = true;
-                        severityText = 'normal';
-                      }
-                      return {
-                        flags: severityFlags,
-                        severityText: severityText,
-                        order: order
-                      };
-                    }
-
-                    for (var key in content.data) {
-                      if (content.data.hasOwnProperty(key) &&
-                          content.data[key].hasOwnProperty('Unit')) {
-                        severity = getSensorStatus(content.data[key]);
-
-                        if (!content.data[key].hasOwnProperty('CriticalLow')) {
-                          content.data[key].CriticalLow = '--';
-                          content.data[key].CriticalHigh = '--';
-                        }
-
-                        if (!content.data[key].hasOwnProperty('WarningLow')) {
-                          content.data[key].WarningLow = '--';
-                          content.data[key].WarningHigh = '--';
-                        }
-
-                        tempKeyParts = key.split('/');
-                        title = tempKeyParts.pop();
-                        title = tempKeyParts.pop() + '_' + title;
-                        title = title.split('_')
-                                    .map(function(item) {
-                                      return item.toLowerCase()
-                                                 .charAt(0)
-                                                 .toUpperCase() +
-                                          item.slice(1);
-                                    })
-                                    .reduce(function(prev, el) {
-                                      return prev + ' ' + el;
-                                    });
-
-                        content.data[key].Value = getScaledValue(
-                            content.data[key].Value, content.data[key].Scale);
-                        content.data[key].CriticalLow = getScaledValue(
-                            content.data[key].CriticalLow,
-                            content.data[key].Scale);
-                        content.data[key].CriticalHigh = getScaledValue(
-                            content.data[key].CriticalHigh,
-                            content.data[key].Scale);
-                        content.data[key].WarningLow = getScaledValue(
-                            content.data[key].WarningLow,
-                            content.data[key].Scale);
-                        content.data[key].WarningHigh = getScaledValue(
-                            content.data[key].WarningHigh,
-                            content.data[key].Scale);
-                        if (Constants.SENSOR_SORT_ORDER.indexOf(
-                                content.data[key].Unit) > -1) {
-                          customOrder = Constants.SENSOR_SORT_ORDER.indexOf(
-                              content.data[key].Unit);
-                        } else {
-                          customOrder = Constants.SENSOR_SORT_ORDER_DEFAULT;
-                        }
-
-                        sensorData.push(Object.assign(
-                            {
-                              path: key,
-                              selected: false,
-                              confirm: false,
-                              copied: false,
-                              title: title,
-                              unit:
-                                  Constants
-                                      .SENSOR_UNIT_MAP[content.data[key].Unit],
-                              severity_flags: severity.flags,
-                              status: severity.severityText,
-                              order: severity.order,
-                              custom_order: customOrder,
-                              search_text:
-                                  (title + ' ' + content.data[key].Value + ' ' +
-                                   Constants.SENSOR_UNIT_MAP[content.data[key]
-                                                                 .Unit] +
-                                   ' ' + severity.severityText + ' ' +
-                                   content.data[key].CriticalLow + ' ' +
-                                   content.data[key].CriticalHigh + ' ' +
-                                   content.data[key].WarningLow + ' ' +
-                                   content.data[key].WarningHigh + ' ')
-                                      .toLowerCase(),
-                              original_data:
-                                  {key: key, value: content.data[key]}
-                            },
-                            content.data[key]));
-                      }
-                    }*/
-					
-					console.log(content);
-					console.log(content.data);
-					console.log(content.data.Value);
+					//console.log(content);
+					//console.log(content.data);
+					//console.log(content.data.Value);
+					//console.log(versionInfo);
 					versionInfo = content.data.Value;
-					console.log(versionInfo);
-					/*for (var key in content.data){							
-						versionInfo = content.data[key].Value;
-						console.log(content.data[key]);
-						console.log(content.data[key].Value);
-						console.log(versionInfo);
-					}*/
+					
                     callback(versionInfo, dataClone);
                   },
                   function(error) {
@@ -1740,7 +1601,7 @@ window.angular && (function(angular) {
           var deferred = $q.defer();
           $http({
             method: 'PUT',
-            url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/updata',
+            url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/update',
             withCredentials: true,
             data:
                 JSON.stringify({'data': '1'})
