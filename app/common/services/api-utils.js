@@ -1719,12 +1719,16 @@ window.angular && (function(angular) {
                     }*/
 					
 					console.log(content);
-					for (var key in content.data){							
+					console.log(content.data);
+					console.log(content.data.Value);
+					versionInfo = content.data.Value;
+					console.log(versionInfo);
+					/*for (var key in content.data){							
 						versionInfo = content.data[key].Value;
 						console.log(content.data[key]);
 						console.log(content.data[key].Value);
 						console.log(versionInfo);
-					}
+					}*/
                     callback(versionInfo, dataClone);
                   },
                   function(error) {
