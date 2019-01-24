@@ -1585,9 +1585,6 @@ window.angular && (function(angular) {
 					var versionInfo = '';
 
 					//console.log(content);
-					//console.log(content.data);
-					//console.log(content.data.Value);
-					//console.log(versionInfo);
 					versionInfo = content.data.Value;
 					
                     callback(versionInfo, dataClone);
@@ -1604,7 +1601,7 @@ window.angular && (function(angular) {
             url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/update/attr/Value',
             withCredentials: true,
             data:
-                JSON.stringify({'data': '1'})
+                JSON.stringify({'data': 1})
           })
               .then(
                   function(response) {
