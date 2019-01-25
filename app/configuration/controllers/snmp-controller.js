@@ -311,7 +311,12 @@ window.angular && (function(angular) {
 		$scope.loadSwitchActiveVersion = function() {
 			APIUtils.getSwitchActiveVersion(function(data, originalData) {
 				//console.log(data);
-				$scope.switchActiveVersion = data;
+				var date = data%100000000;
+				var front = Math.floor(data/100000000);
+				var temp = front/10;
+				var ver = parseFloat(temp).toFixed(1);
+				var version = 'version' + ver.toString() + '-' + date.toString();
+				$scope.switchActiveVersion = version;
 			});
         };
 		
@@ -325,7 +330,7 @@ window.angular && (function(angular) {
 		$scope.runConfirmed = function() {
 			APIUtils.runImage($scope.activate_image_id)
             .then(
-                function(state) {  ///run sucdess
+                function(state) {  ///run success
                     $scope.loadFirmwares();
 					$scope.loadSwitchActiveVersion();
                     return state;
