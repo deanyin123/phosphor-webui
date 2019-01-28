@@ -54,12 +54,13 @@
             <h3 class="h4 subhead">Switch reboot operation</h3>
         </div>
 		<div class="row column">
-			<div class="bmc-reboot-option" ng-class="{disabled: dataService.server_unreachable || dataService.loading, transitionAll: confirmRebootSwitch}">			
-				<confirm title="Reboot the Switch" 	confirm="reboot_confirm" ng-show="reboot_confirm" callback="reboot"></confirm>
+			<div class="bmc-reboot-option" ng-class="{disabled: dataService.server_unreachable || dataService.loading, transitionAll: switch_reboot_confirm}">			
+				<confirm title="Reboot the Switch" confirm="switch_reboot_confirm" ng-show="switch_reboot_confirm" cancel="switchRebootCancel" callback="reboot"></confirm>
+				<confirm title="orderly shutdown" confirm="orderly_confirm" ng-show="orderly_confirm" cancel="orderlyShutdownCancel" callback="orderlyShutdown"></confirm>
 			</div>
 		</div>
 		<div class="row column">
-			<button id="bmc__reboot" class="btn-secondary float-right" ng-class="{disabled: confirmRebootSwitch}" ng-click="rebootConfirm()" ng-disabled="dataService.server_unreachable">
+			<button id="bmc__reboot" class="btn-secondary float-right" ng-class="{disabled: switch_reboot_confirm}" ng-click="rebootConfirm()" ng-disabled="dataService.server_unreachable">
 			<i>&#x21BB</i> Reboot Switch</button>
 		</div>
 	</div>
