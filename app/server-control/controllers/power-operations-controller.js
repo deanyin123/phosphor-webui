@@ -336,6 +336,23 @@ window.angular && (function(angular) {
         $scope.confirm = true;
         $scope.immediately_confirm = true;
       };
+	  
+	/*  Modified by USISH Steven 20181226 end */
+	$scope.confirmRebootSwitch = false;
+	$scope.rebootConfirm = function() {
+        if ($scope.confirmRebootSwitch) {
+          return;
+        }
+        $scope.confirmRebootSwitch = true;
+    };
+    $scope.reboot = function() {
+        //dataService.setUnreachableState();
+        //APIUtils.bmcReboot(function(response) {
+        //  $scope.$emit('user-logged-in', {});
+        //});
+    };  
+	/*  Modified by USISH Steven 20181226 end */
+	
     }
   ]);
 })(angular);

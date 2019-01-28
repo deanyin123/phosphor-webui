@@ -1,7 +1,7 @@
 <loader loading="dataService.loading || loading"></loader>
 <div id="power-operations">
     <div class="row column">
-        <h1>Switch power operations</h1>
+        <h1>Switch operations</h1>
         <div class="power__current-status page-header">
             <h2 class="inline h4">Current status</h2>
             <div class="power__status-log inline float-right">Last power operation at <span class="courier-bold">{{power_time | localeDate}}</span></div>
@@ -15,7 +15,7 @@
     </div>
     <div class="row column">
         <div class="row column">
-            <h3 class="h4 subhead">Select a power operation</h3>
+            <h3 class="h4 subhead">Switch power operation</h3>
         </div>
         <span class="inactive-message" ng-show="dataService.server_state == 'Unreachable'">There are no power operations to display while a power operation is in progress. When complete, any new power operations will be displayed here.</span>
         <!-- Power on displays only when server is shutdown -->
@@ -47,4 +47,21 @@
         </div>-->
 		<!--  Modified by USISH Steven 20181226 end -->
     </div>
+	
+	<!--  Modified by USISH Steven 20181226 start -->
+	<div class="row column">
+		<div class="row column">
+            <h3 class="h4 subhead">Switch reboot operation</h3>
+        </div>
+		<div class="row column">
+			<div class="bmc-reboot-option" ng-class="{disabled: dataService.server_unreachable || dataService.loading, transitionAll: confirmRebootSwitch}">			
+				<confirm title="Reboot the Switch" 	confirm="reboot_confirm" ng-show="reboot_confirm" callback="reboot"></confirm>
+			</div>
+		</div>
+		<div class="row column">
+			<button id="bmc__reboot" class="btn-secondary float-right" ng-class="{disabled: confirmRebootSwitch}" ng-click="rebootConfirm()" ng-disabled="dataService.server_unreachable">
+			<i>&#x21BB</i> Reboot Switch</button>
+		</div>
+	</div>
+	<!--  Modified by USISH Steven 20181226 end -->
 </div>
