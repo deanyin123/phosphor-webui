@@ -311,12 +311,13 @@ window.angular && (function(angular) {
 		$scope.loadSwitchActiveVersion = function() {
 			APIUtils.getSwitchActiveVersion(function(data, originalData) {
 				//console.log(data);
-				var date = data%100000000;
+				/*var date = data%100000000;
 				var front = Math.floor(data/100000000);
 				var temp = front/10;
 				var ver = parseFloat(temp).toFixed(1);
-				var version = 'version' + ver.toString() + '-' + date.toString();
-				$scope.switchActiveVersion = version;
+				var version = 'v' + ver.toString() + '-' + date.toString();
+				$scope.switchActiveVersion = version;*/
+				$scope.switchActiveVersion = data;
 			});
         };
 		
