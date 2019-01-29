@@ -53,17 +53,17 @@
 		<div class="row column">
             <h3 class="h4 subhead">Switch reboot operation</h3>
         </div>
-		<div class="row column">
-			<!--<div class="column power-option" ng-class="{disabled: dataService.server_unreachable || dataService.loading, transitionAll: switch_reboot_confirm}">			
-				<confirm title="Reboot the Switch" confirm="switch_reboot_confirm" ng-show="switch_reboot_confirm" cancel="switchRebootCancel" callback="reboot"></confirm>
-			</div>-->
-			<div class="column power-option" ng-show="switch_reboot_confirm">			
+		<!--<div class="column power-option" ng-class="{disabled: dataService.server_unreachable || dataService.loading, transitionAll: switch_reboot_confirm}">			
 				<confirm title="Reboot the Switch" confirm="switch_reboot_confirm" ng-show="switch_reboot_confirm" cancel="switchRebootCancel" callback="reboot"></confirm>
 			</div>
-		</div>
-		<div class="row column">
-			<button id="bmc__reboot" class="btn-secondary float-right" ng-class="{disabled: switch_reboot_confirm}" ng-click="rebootConfirm()" ng-disabled="dataService.server_unreachable">
+		<div class="column power-option" ng-show="switch_reboot_confirm">			
+			<confirm title="Reboot the Switch" confirm="switch_reboot_confirm" ng-show="switch_reboot_confirm" cancel="switchRebootCancel" callback="reboot"></confirm>
+		</div>-->
+		<div class="column power-option"> 
+			<button id="power__soft-shutdown" class="btn-secondary inline" ng-class="{disabled: switch_reboot_confirm}" ng-click="rebootConfirm()" ng-disabled="dataService.server_unreachable">
 			<i>&#x21BB</i> Reboot Switch</button>
+			<p class="inline">Attempts to reboot switch</p>
+			<confirm title="Reboot the Switch" confirm="switch_reboot_confirm" ng-show="switch_reboot_confirm" cancel="switchRebootCancel" callback="reboot"></confirm>
 		</div>
 	</div>
 	<!--  Modified by USISH Steven 20181226 end -->
