@@ -346,8 +346,8 @@ window.angular && (function(angular) {
             .then(
                 function(state) {  ///update success
                     $scope.loadFirmwares();
-					//$scope.loadSwitchActiveVersion();
-					$scope.loadSwitchUpdateStatus();
+					$scope.loadSwitchActiveVersion();
+					//$scope.loadSwitchUpdateStatus();
                     return state;
                 },
                 function(error) {  ///update fail
@@ -359,8 +359,6 @@ window.angular && (function(angular) {
                     });
                 })
         };
-
-		/*$scope.updateConfirmed = function() {
 			APIUtils.updateImage($scope.activate_image_id)
             .then(
                 function(state) {  ///update success
@@ -395,8 +393,7 @@ window.angular && (function(angular) {
                 function(state) {  ///run success
                     $scope.loadFirmwares();
 					$scope.loadSwitchActiveVersion();
-					//$scope.loadSwitchUpdateStatus();
-					$scope.loadSwitchActivatedStatus();
+					//$scope.loadSwitchActivatedStatus();
                     return state;
                 },
                 function(error) {  ///run fail
@@ -413,8 +410,8 @@ window.angular && (function(angular) {
 				
        $scope.loadFirmwares();
 	   $scope.loadSwitchActiveVersion();
-	   $scope.loadSwitchUpdateStatus();
-	   $scope.loadSwitchActivatedStatus();
+	   //$scope.loadSwitchUpdateStatus();
+	   //$scope.loadSwitchActivatedStatus();
     }
   ]);
 })(angular);

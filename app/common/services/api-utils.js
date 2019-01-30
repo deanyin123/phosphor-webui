@@ -1642,14 +1642,14 @@ window.angular && (function(angular) {
                   });
         },
 		
-		updateImage: function(cmd) {
+		updateImage: function(imageId) {
           var deferred = $q.defer();
           $http({
             method: 'PUT',
             url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/update/attr/Value',
             withCredentials: true,
             data:
-                JSON.stringify({'data': cmd})
+                JSON.stringify({'data': 1})
           })
               .then(
                   function(response) {
@@ -1665,14 +1665,14 @@ window.angular && (function(angular) {
           return deferred.promise;
         },
 		
-		runImage: function(cmd) {
+		runImage: function(imageId) {
           var deferred = $q.defer();
           $http({
             method: 'PUT',
             url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/activate',
             withCredentials: true,
             data:
-                JSON.stringify({'data': cmd})
+                JSON.stringify({'data': 1})
           })
               .then(
                   function(response) {
