@@ -342,7 +342,7 @@ window.angular && (function(angular) {
 			$scope.activate_image_version = imageVersion;
 			$scope.activate_image_type = imageType;
 			//$scope.activate_confirm = true;
-			APIUtils.updateImage(1)
+			APIUtils.updateImage(imageId)
             .then(
                 function(state) {  ///update success
                     $scope.loadFirmwares();
@@ -357,27 +357,8 @@ window.angular && (function(angular) {
 						desc: JSON.stringify(error.data),
 						type: 'Error'
                     });
-                })
-        };
-			APIUtils.updateImage($scope.activate_image_id)
-            .then(
-                function(state) {  ///update success
-                    $scope.loadFirmwares();
-					$scope.loadSwitchActiveVersion();
-					$scope.loadSwitchUpdateStatus();
-                    return state;
-                },
-                function(error) {  ///update fail
-                    $scope.displayError({
-						modal_title: 'Error during update call',
-						title: 'Error during update call',
-						desc: JSON.stringify(error.data),
-						type: 'Error'
-                    });
-                })
-            
-			//$scope.activate_confirm = false;
-        };
+                });
+        };			
 		
 		$scope.runImage = function(imageId, imageVersion, imageType) {
 			$scope.activate_image_id = imageId;
@@ -388,7 +369,7 @@ window.angular && (function(angular) {
         };
 
 		$scope.runConfirmed = function() {
-			APIUtils.runImage(1)
+			APIUtils.runImage($scope.activate_image_id)
             .then(
                 function(state) {  ///run success
                     $scope.loadFirmwares();
@@ -403,7 +384,7 @@ window.angular && (function(angular) {
 						desc: JSON.stringify(error.data),
 						type: 'Error'
                     });
-                })
+                });
             
 			$scope.activate_confirm = false;
         };
