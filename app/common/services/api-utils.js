@@ -1609,9 +1609,9 @@ window.angular && (function(angular) {
 					var switchActivatedStatus = '';
 
 					//console.log(content);
-					Activated = content.data.Value;
+					switchActivatedStatus = content.data.Value;
 					
-                    callback(Activated, dataClone);
+                    callback(switchActivatedStatus, dataClone);
                   },
                   function(error) {
                     console.log(error);
