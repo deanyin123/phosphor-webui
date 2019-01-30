@@ -338,12 +338,12 @@ window.angular && (function(angular) {
       };
 	  
 	/*  Modified by USISH Steven 20181226 end */
-	$scope.switch_reboot_confirm = false;
+	$scope.switch_reset_confirm = false;
 	$scope.rebootConfirm = function() {
-        if ($scope.switch_reboot_confirm) {
+        if ($scope.switch_reset_confirm) {
           return;
         }
-        $scope.switch_reboot_confirm = true;
+        $scope.switch_reset_confirm = true;
     };
     $scope.reboot = function() {
         //dataService.setUnreachableState();
