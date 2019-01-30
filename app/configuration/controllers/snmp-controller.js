@@ -156,6 +156,7 @@ window.angular && (function(angular) {
 						$scope.uploading = false;
 						$scope.upload_success = true;
 						$scope.loadFirmwares();
+						$scope.loadSwitchActiveVersion();
 					},
 					function(error) {
 						$scope.uploading = false;
@@ -317,23 +318,85 @@ window.angular && (function(angular) {
 				var ver = parseFloat(temp).toFixed(1);
 				var version = 'v' + ver.toString() + '-' + date.toString();
 				$scope.switchActiveVersion = version;*/
-				$scope.switchActiveVersion = data;
+				$scope.toBeActiveVer = 'v' + (data%100).toString();
+				$scope.switchActiveVer = 'v' + parseInt(data/100).toString();
 			});
         };
+		
+		$scope.loadSwitchUpdateStatus = function(){
+			APIUtils.getSwitchUpdateStatus().then(function(result){
+				console.log(result);
+				$scope.switchUpdateStatus = result;
+			});
+		};
+		
+		$scope.loadSwitchActivatedStatus = function(){
+			APIUtils.getSwitchActivatedStatus().then(function(result){
+				console.log(result);
+				$scope.switchActivatedStatus = result;
+			});
+		};
+		
+		$scope.updateImage = function(imageId, imageVersion, imageType) {
+			//$scope.activate_image_id = imageId;
+			$scope.activate_image_version = imageVersion;
+			$scope.activate_image_type = imageType;
+			//$scope.activate_confirm = true;
+			APIUtils.updateImage(1)
+            .then(
+                function(state) {  ///update success
+                    $scope.loadFirmwares();
+					//$scope.loadSwitchActiveVersion();
+					$scope.loadSwitchUpdateStatus();
+                    return state;
+                },
+                function(error) {  ///update fail
+                    $scope.displayError({
+						modal_title: 'Error during update call',
+						title: 'Error during update call',
+						desc: JSON.stringify(error.data),
+						type: 'Error'
+                    });
+                })
+        };
+
+		/*$scope.updateConfirmed = function() {
+			APIUtils.updateImage($scope.activate_image_id)
+            .then(
+                function(state) {  ///update success
+                    $scope.loadFirmwares();
+					$scope.loadSwitchActiveVersion();
+					$scope.loadSwitchUpdateStatus();
+                    return state;
+                },
+                function(error) {  ///update fail
+                    $scope.displayError({
+						modal_title: 'Error during update call',
+						title: 'Error during update call',
+						desc: JSON.stringify(error.data),
+						type: 'Error'
+                    });
+                })
+            
+			//$scope.activate_confirm = false;
+        };*/
 		
 		$scope.runImage = function(imageId, imageVersion, imageType) {
 			$scope.activate_image_id = imageId;
 			$scope.activate_image_version = imageVersion;
 			$scope.activate_image_type = imageType;
 			$scope.activate_confirm = true;
+			
         };
 
 		$scope.runConfirmed = function() {
-			APIUtils.runImage($scope.activate_image_id)
+			APIUtils.runImage(1)
             .then(
                 function(state) {  ///run success
                     $scope.loadFirmwares();
 					$scope.loadSwitchActiveVersion();
+					//$scope.loadSwitchUpdateStatus();
+					$scope.loadSwitchActivatedStatus();
                     return state;
                 },
                 function(error) {  ///run fail
@@ -347,10 +410,11 @@ window.angular && (function(angular) {
             
 			$scope.activate_confirm = false;
         };
-		
-		
+				
        $scope.loadFirmwares();
 	   $scope.loadSwitchActiveVersion();
+	   $scope.loadSwitchUpdateStatus();
+	   $scope.loadSwitchActivatedStatus();
     }
   ]);
 })(angular);

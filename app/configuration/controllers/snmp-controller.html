@@ -6,7 +6,7 @@
 	</div>
 </div>
 
-<firmware-list title="Switch images" version="switchActiveVersion" firmwares="firmwares" filter-by="filters.Switch"></firmware-list>
+<firmware-list title="Switch images" version="switchActiveVer" toBeActiveVer="toBeActiveVer" switchUpdateStatus="switchUpdateStatus" switchActivatedStatus="switchActivatedStatus" firmwares="firmwares" filter-by="filters.Switch"></firmware-list>
 
 <!--<firmware-list title="Server images" version="hostActiveVersion" firmwares="firmwares" filter-by="filters.host"></firmware-list> -->
 
@@ -108,7 +108,7 @@
 		</div>
 		<div class="modal__button-wrapper">
 			<button class="inline btn-secondary" ng-click="activate_confirm=false;">Cancel</button>
-			<button class="inline btn-primary" ng-click="runConfirmed()">Continue</button>
+			<button class="inline btn-primary" ng-click="updateConfirmed()">Continue</button>
 		</div>
 	</div>
 </section>

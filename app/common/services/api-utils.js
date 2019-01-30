@@ -1570,6 +1570,54 @@ window.angular && (function(angular) {
         },
 		
 		/*  Modified by USISH Steven 20190122 start */
+		getSwitchUpdateStatus: function(callback){
+			$http({
+            method: 'GET',
+            url: DataService.getHost() +
+                '/xyz/openbmc_project/sensors/switch/update',
+            withCredentials: true
+          })
+              .then(
+                  function(response) {
+                    var json = JSON.stringify(response.data);
+                    var content = JSON.parse(json);
+                    var dataClone = JSON.parse(JSON.stringify(content.data));
+					var switchUpdateStatus = '';
+
+					//console.log(content);
+					switchUpdateStatus = content.data.Value;
+					
+                    callback(switchUpdateStatus, dataClone);
+                  },
+                  function(error) {
+                    console.log(error);
+                  });
+		},
+		
+		getSwitchActivatedStatus: function(callback){
+			$http({
+            method: 'GET',
+            url: DataService.getHost() +
+                '/xyz/openbmc_project/sensors/switch/activate',
+            withCredentials: true
+          })
+              .then(
+                  function(response) {
+                    var json = JSON.stringify(response.data);
+                    var content = JSON.parse(json);
+                    var dataClone = JSON.parse(JSON.stringify(content.data));
+					var switchActivatedStatus = '';
+
+					//console.log(content);
+					Activated = content.data.Value;
+					
+                    callback(Activated, dataClone);
+                  },
+                  function(error) {
+                    console.log(error);
+                  });
+		},
+		
 		getSwitchActiveVersion: function(callback) {
           $http({
             method: 'GET',
@@ -1594,14 +1642,37 @@ window.angular && (function(angular) {
                   });
         },
 		
-		runImage: function(imageId) {
+		updateImage: function(cmd) {
           var deferred = $q.defer();
           $http({
             method: 'PUT',
             url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/update/attr/Value',
             withCredentials: true,
             data:
-                JSON.stringify({'data': 1})
+                JSON.stringify({'data': cmd})
+          })
+              .then(
+                  function(response) {
+                    var json = JSON.stringify(response.data);
+                    var content = JSON.parse(json);
+                    deferred.resolve(content);
+                  },
+                  function(error) {
+                    console.log(error);
+                    deferred.reject(error);
+                  });
+
+          return deferred.promise;
+        },
+		
+		runImage: function(cmd) {
+          var deferred = $q.defer();
+          $http({
+            method: 'PUT',
+            url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/activate',
+            withCredentials: true,
+            data:
+                JSON.stringify({'data': cmd})
           })
               .then(
                   function(response) {
