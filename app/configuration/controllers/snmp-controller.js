@@ -324,16 +324,16 @@ window.angular && (function(angular) {
         };
 		
 		$scope.loadSwitchUpdateStatus = function(){
-			APIUtils.getSwitchUpdateStatus().then(function(result){
-				console.log(result);
-				$scope.switchUpdateStatus = result;
+			APIUtils.getSwitchUpdateStatus(function(data, originalData) {
+				console.log(data);
+				$scope.switchUpdateStatus = data;
 			});
 		};
 		
 		$scope.loadSwitchActivatedStatus = function(){
-			APIUtils.getSwitchActivatedStatus().then(function(result){
-				console.log(result);
-				$scope.switchActivatedStatus = result;
+			APIUtils.getSwitchActivatedStatus(function(data, originalData) {
+				console.log(data);
+				$scope.switchActivatedStatus = data;
 			});
 		};
 		

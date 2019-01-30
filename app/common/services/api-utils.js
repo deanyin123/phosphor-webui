@@ -1570,7 +1570,7 @@ window.angular && (function(angular) {
         },
 		
 		/*  Modified by USISH Steven 20190122 start */
-		getSwitchUpdateStatus: function(callback){
+		getSwitchUpdateStatus: function(callback) {
 			$http({
             method: 'GET',
             url: DataService.getHost() +
@@ -1582,10 +1582,7 @@ window.angular && (function(angular) {
                     var json = JSON.stringify(response.data);
                     var content = JSON.parse(json);
                     var dataClone = JSON.parse(JSON.stringify(content.data));
-					var switchUpdateStatus = '';
-
-					//console.log(content);
-					switchUpdateStatus = content.data.Value;
+					var switchUpdateStatus = content.data.Value;
 					
                     callback(switchUpdateStatus, dataClone);
                   },
@@ -1594,7 +1591,7 @@ window.angular && (function(angular) {
                   });
 		},
 		
-		getSwitchActivatedStatus: function(callback){
+		getSwitchActivatedStatus: function(callback) {
 			$http({
             method: 'GET',
             url: DataService.getHost() +
@@ -1606,10 +1603,7 @@ window.angular && (function(angular) {
                     var json = JSON.stringify(response.data);
                     var content = JSON.parse(json);
                     var dataClone = JSON.parse(JSON.stringify(content.data));
-					var switchActivatedStatus = '';
-
-					//console.log(content);
-					switchActivatedStatus = content.data.Value;
+					var switchActivatedStatus = content.data.Value;
 					
                     callback(switchActivatedStatus, dataClone);
                   },
@@ -1630,10 +1624,7 @@ window.angular && (function(angular) {
                     var json = JSON.stringify(response.data);
                     var content = JSON.parse(json);
                     var dataClone = JSON.parse(JSON.stringify(content.data));
-					var versionInfo = '';
-
-					//console.log(content);
-					versionInfo = content.data.Value;
+					var versionInfo = content.data.Value;
 					
                     callback(versionInfo, dataClone);
                   },
