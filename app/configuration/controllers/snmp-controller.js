@@ -347,7 +347,7 @@ window.angular && (function(angular) {
                 function(state) {  ///update success
                     $scope.loadFirmwares();
 					$scope.loadSwitchActiveVersion();
-					//$scope.loadSwitchUpdateStatus();
+					$scope.loadSwitchUpdateStatus();
                     return state;
                 },
                 function(error) {  ///update fail
@@ -374,7 +374,7 @@ window.angular && (function(angular) {
                 function(state) {  ///run success
                     $scope.loadFirmwares();
 					$scope.loadSwitchActiveVersion();
-					//$scope.loadSwitchActivatedStatus();
+					$scope.loadSwitchActivatedStatus();
                     return state;
                 },
                 function(error) {  ///run fail
@@ -391,8 +391,8 @@ window.angular && (function(angular) {
 				
        $scope.loadFirmwares();
 	   $scope.loadSwitchActiveVersion();
-	   //$scope.loadSwitchUpdateStatus();
-	   //$scope.loadSwitchActivatedStatus();
+	   $scope.loadSwitchUpdateStatus();
+	   $scope.loadSwitchActivatedStatus();
     }
   ]);
 })(angular);
