@@ -377,7 +377,7 @@ window.angular && (function(angular) {
                 })
             
 			//$scope.activate_confirm = false;
-        };*/
+        };
 		
 		$scope.runImage = function(imageId, imageVersion, imageType) {
 			$scope.activate_image_id = imageId;
