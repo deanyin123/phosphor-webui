@@ -23,6 +23,9 @@ window.angular && (function(angular) {
 			$anchorScroll();
 		};
 
+		$scope.toBeActiveVer = '';
+		$scope.switchUpdateStatus = 0;
+		$scope.switchActivatedStatus = 0;
         $scope.firmwares = [];
         $scope.switchActiveVersion = '';
         //$scope.hostActiveVersion = '';
@@ -326,14 +329,16 @@ window.angular && (function(angular) {
 		$scope.loadSwitchUpdateStatus = function(){
 			APIUtils.getSwitchUpdateStatus(function(data, originalData) {
 				console.log(data);
-				$scope.switchUpdateStatus = data;
+				$scope.switchUpdateStatus = data.toString();
+				console.log($scope.switchUpdateStatus);
 			});
 		};
 		
 		$scope.loadSwitchActivatedStatus = function(){
 			APIUtils.getSwitchActivatedStatus(function(data, originalData) {
 				console.log(data);
-				$scope.switchActivatedStatus = data;
+				$scope.switchActivatedStatus = data.toString();
+				console.log($scope.switchActivatedStatus);
 			});
 		};
 		
