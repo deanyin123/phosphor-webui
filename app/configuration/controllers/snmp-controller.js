@@ -341,7 +341,6 @@ window.angular && (function(angular) {
 			//$scope.activate_image_id = imageId;
 			$scope.activate_image_version = imageVersion;
 			$scope.activate_image_type = imageType;
-			//$scope.activate_confirm = true;
 			APIUtils.updateImage(imageId)
             .then(
                 function(state) {  ///update success
