@@ -68,9 +68,9 @@
 				<button class="firmware__action-link" ng-show="firmware.activationStatus != 'Functional'" ng-click="delete(firmware.imageId, firmware.Version)">Delete</button>
 			</div>
 			<div ng-if="title == 'Switch images'">
-				<button class="firmware__action-link" ng-if="switchUpdateStatus == '0'" ng-click="update(firmware.imageId, firmware.Version, firmware.imageType)">update</button>	
+				<button class="firmware__action-link" ng-show="switchUpdateStatus == '0'" ng-click="update(firmware.imageId, firmware.Version, firmware.imageType)">update</button>	
 				<div ng-if="switchUpdateStatus == '2'">
-					<button class="firmware__action-link" ng-if="switchActivatedStatus == '0'" ng-click="run(firmware.imageId, firmware.Version, firmware.imageType)">Reset</button>
+					<button class="firmware__action-link" ng-show="switchActivatedStatus == '0'" ng-click="run(firmware.imageId, firmware.Version, firmware.imageType)">Reset</button>
 				</div>
 				<button class="firmware__action-link" ng-show="firmware.activationStatus != 'Functional'" ng-click="delete(firmware.imageId, firmware.Version)">Delete</button>
 			</div>
