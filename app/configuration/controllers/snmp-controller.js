@@ -322,6 +322,8 @@ window.angular && (function(angular) {
 				var toBeActiveVer = 'v' + (data%100).toString();
 				var switchActiveVer = 'v' + parseInt(data/100).toString();
 				$scope.switchInfo.switchActivedVersion = switchActiveVer;
+				if(toBeActiveVer == 'v0')
+					$scope.switchInfo.toBeActiveVersion = 'none';
 				$scope.switchInfo.toBeActiveVersion = toBeActiveVer;
 				console.log(switchInfo);
 			});
@@ -338,10 +340,10 @@ window.angular && (function(angular) {
 		
 		$scope.loadSwitchActivatedStatus = function(){
 			APIUtils.getSwitchActivatedStatus(function(data, originalData) {
-				console.log(data);
+				//console.log(data);
 				var ActivatedStatus = data.toString();
 				$scope.switchInfo.switchActivatedStatus = ActivatedStatus;
-				console.log(switchInfo);
+				//console.log(switchInfo);
 			});
 		};
 		
@@ -353,8 +355,9 @@ window.angular && (function(angular) {
             .then(
                 function(state) {  ///update success
                     $scope.loadFirmwares();
-					$scope.loadSwitchActiveVersion();
 					$scope.loadSwitchUpdateStatus();
+					$scope.loadSwitchActivatedStatus();
+					$scope.loadSwitchActiveVersion();
                     return state;
                 },
                 function(error) {  ///update fail
@@ -381,6 +384,7 @@ window.angular && (function(angular) {
                 function(state) {  ///run success
                     $scope.loadFirmwares();
 					$scope.loadSwitchActiveVersion();
+					$scope.loadSwitchUpdateStatus();
 					$scope.loadSwitchActivatedStatus();
                     return state;
                 },
