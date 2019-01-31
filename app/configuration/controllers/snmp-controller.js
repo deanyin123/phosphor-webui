@@ -23,9 +23,7 @@ window.angular && (function(angular) {
 			$anchorScroll();
 		};
 
-		$scope.toBeActiveVer = '';
-		$scope.switchUpdateStatus = 0;
-		$scope.switchActivatedStatus = 0;
+		$scope.switchInfo = {switchActivedVersion: '', toBeActiveVersion: '', switchActivatedStatus: '', switchUpdateStatus: ''};
         $scope.firmwares = [];
         $scope.switchActiveVersion = '';
         //$scope.hostActiveVersion = '';
@@ -321,24 +319,29 @@ window.angular && (function(angular) {
 				var ver = parseFloat(temp).toFixed(1);
 				var version = 'v' + ver.toString() + '-' + date.toString();
 				$scope.switchActiveVersion = version;*/
-				$scope.toBeActiveVer = 'v' + (data%100).toString();
-				$scope.switchActiveVer = 'v' + parseInt(data/100).toString();
+				var toBeActiveVer = 'v' + (data%100).toString();
+				var switchActiveVer = 'v' + parseInt(data/100).toString();
+				$scope.switchInfo.switchActivedVersion = switchActiveVer;
+				$scope.switchInfo.toBeActiveVersion = toBeActiveVer;
+				console.log(switchInfo);
 			});
         };
 		
 		$scope.loadSwitchUpdateStatus = function(){
 			APIUtils.getSwitchUpdateStatus(function(data, originalData) {
 				console.log(data);
-				$scope.switchUpdateStatus = data.toString();
-				console.log($scope.switchUpdateStatus);
+				var UpdateStatus = data.toString();
+				$scope.switchInfo.switchUpdateStatus = UpdateStatus;
+				console.log(switchInfo);
 			});
 		};
 		
 		$scope.loadSwitchActivatedStatus = function(){
 			APIUtils.getSwitchActivatedStatus(function(data, originalData) {
 				console.log(data);
-				$scope.switchActivatedStatus = data.toString();
-				console.log($scope.switchActivatedStatus);
+				var ActivatedStatus = data.toString();
+				$scope.switchInfo.switchActivatedStatus = ActivatedStatus;
+				console.log(switchInfo);
 			});
 		};
 		

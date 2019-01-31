@@ -1,10 +1,10 @@
 <div class="row column firmware__table">
   <div class="table-header column small-12">
     <p class="inline">{{title}}</p>
-    <p class="inline firmware__active-version">Functional firmware version: {{version}}</p>
+    <p class="inline firmware__active-version">Functional firmware version: {{version.switchActivedVersion}}</p>
 	<!--  Modified by USISH Steven 20190117 start -->
 	<div ng-if="title == 'Switch images'">
-	<p class="inline firmware__active-version">Tobe activate firmware version: {{toBeActiveVer}}- {{switchUpdateStatus}} -{{switchActivatedStatus}}</p>
+	<p class="inline firmware__active-version">Tobe activate firmware version: {{version.toBeActiveVersion}}-{{version.switchUpdateStatus}}-{{version.switchActivatedStatus}}</p>
 	</div>
 	<!--  Modified by USISH Steven 20190117 end -->
   </div>
