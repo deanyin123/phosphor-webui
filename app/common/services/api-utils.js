@@ -1660,7 +1660,7 @@ window.angular && (function(angular) {
           var deferred = $q.defer();
           $http({
             method: 'PUT',
-            url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/activate',
+            url: DataService.getHost() + '/xyz/openbmc_project/sensors/switch/activate/attr/Value',
             withCredentials: true,
             data:
                 JSON.stringify({'data': 1})

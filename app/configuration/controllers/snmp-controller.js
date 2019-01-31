@@ -322,10 +322,12 @@ window.angular && (function(angular) {
 				var toBeActiveVer = 'v' + (data%100).toString();
 				var switchActiveVer = 'v' + parseInt(data/100).toString();
 				$scope.switchInfo.switchActivedVersion = switchActiveVer;
-				if(toBeActiveVer == 'v0')
+				if(toBeActiveVer == 'v0'){
 					$scope.switchInfo.toBeActiveVersion = 'none';
-				$scope.switchInfo.toBeActiveVersion = toBeActiveVer;
-				console.log(switchInfo);
+				} else {
+					$scope.switchInfo.toBeActiveVersion = toBeActiveVer;
+				}
+					
 			});
         };
 		
@@ -334,13 +336,13 @@ window.angular && (function(angular) {
 				console.log(data);
 				var UpdateStatus = data.toString();
 				$scope.switchInfo.switchUpdateStatus = UpdateStatus;
-				console.log(switchInfo);
+				//console.log(switchInfo);
 			});
 		};
 		
 		$scope.loadSwitchActivatedStatus = function(){
 			APIUtils.getSwitchActivatedStatus(function(data, originalData) {
-				//console.log(data);
+				console.log(data);
 				var ActivatedStatus = data.toString();
 				$scope.switchInfo.switchActivatedStatus = ActivatedStatus;
 				//console.log(switchInfo);
