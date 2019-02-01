@@ -156,8 +156,11 @@ window.angular && (function(angular) {
 						$scope.file = '';
 						$scope.uploading = false;
 						$scope.upload_success = true;
+						APIUtils.updateImage(0);  ///置0
+						APIUtils.runImage(0);     ///置0
 						$scope.loadFirmwares();
-						$scope.loadSwitchActiveVersion();
+						$scope.loadSwitchUpdateStatus();
+						$scope.loadSwitchActivatedStatus();
 					},
 					function(error) {
 						$scope.uploading = false;
@@ -245,7 +248,7 @@ window.angular && (function(angular) {
 				});
         };
 
-	    $scope.changePriority = function(imageId, imageVersion, from, to) {
+	   /* $scope.changePriority = function(imageId, imageVersion, from, to) {
 			$scope.priority_image_id = imageId;
 			$scope.priority_image_version = imageVersion;
 			$scope.priority_from = from;
@@ -270,7 +273,7 @@ window.angular && (function(angular) {
               }
             });
 			$scope.confirm_priority = false;
-        };
+        };*/
 	  
         $scope.deleteImage = function(imageId, imageVersion) {
 			$scope.delete_image_id = imageId;
@@ -336,7 +339,7 @@ window.angular && (function(angular) {
 				console.log(data);
 				var UpdateStatus = data.toString();
 				$scope.switchInfo.switchUpdateStatus = UpdateStatus;
-				//console.log(switchInfo);
+				console.log(switchInfo);
 			});
 		};
 		
@@ -345,21 +348,22 @@ window.angular && (function(angular) {
 				console.log(data);
 				var ActivatedStatus = data.toString();
 				$scope.switchInfo.switchActivatedStatus = ActivatedStatus;
-				//console.log(switchInfo);
+				console.log(switchInfo);
 			});
 		};
 		
 		$scope.updateImage = function(imageId, imageVersion, imageType) {
-			//$scope.activate_image_id = imageId;
+			$scope.activate_image_id = imageId;
 			$scope.activate_image_version = imageVersion;
 			$scope.activate_image_type = imageType;
-			APIUtils.updateImage(imageId)
+			APIUtils.updateImage(1)
             .then(
                 function(state) {  ///update success
+					APIUtils.deleteImage($scope.activate_image_id); ///update success delete image
                     $scope.loadFirmwares();
+					$scope.loadSwitchActiveVersion();
 					$scope.loadSwitchUpdateStatus();
 					$scope.loadSwitchActivatedStatus();
-					$scope.loadSwitchActiveVersion();
                     return state;
                 },
                 function(error) {  ///update fail
@@ -381,7 +385,7 @@ window.angular && (function(angular) {
         };
 
 		$scope.runConfirmed = function() {
-			APIUtils.runImage($scope.activate_image_id)
+			APIUtils.runImage(1)
             .then(
                 function(state) {  ///run success
                     $scope.loadFirmwares();
