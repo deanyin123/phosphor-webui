@@ -40,6 +40,22 @@ window.angular && (function(angular) {
             ws.onopen = function() {
               console.log('websocket opened');
             };
+			
+			/// add start
+			ws.onmessage = function(evt) {
+              term.io.print(evt.data); // websocket -> terminal
+            };
+            term.onTerminalReady = function() {
+              var io = term.io.push();
+              io.onVTKeystroke = function(str) {
+                ws.send(str); // terminal -> websocket
+              };
+              io.sendString = function(str) {
+                ws.send(str);
+              };
+            };
+			///add end
+			
             ws.onclose = function(event) {
               console.log(
                   'websocket closed. code: ' + event.code +
