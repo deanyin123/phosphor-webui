@@ -336,19 +336,19 @@ window.angular && (function(angular) {
 		
 		$scope.loadSwitchUpdateStatus = function(){
 			APIUtils.getSwitchUpdateStatus(function(data, originalData) {
-				console.log(data);
+				//console.log(data);
 				var UpdateStatus = data.toString();
 				$scope.switchInfo.switchUpdateStatus = UpdateStatus;
-				console.log(switchInfo);
+				//console.log(switchInfo);
 			});
 		};
 		
 		$scope.loadSwitchActivatedStatus = function(){
 			APIUtils.getSwitchActivatedStatus(function(data, originalData) {
-				console.log(data);
+				//console.log(data);
 				var ActivatedStatus = data.toString();
 				$scope.switchInfo.switchActivatedStatus = ActivatedStatus;
-				console.log(switchInfo);
+				//console.log(switchInfo);
 			});
 		};
 		

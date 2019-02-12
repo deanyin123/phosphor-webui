@@ -39,19 +39,37 @@ window.angular && (function(angular) {
             term.attach(ws);
             ws.onopen = function() {
               console.log('websocket opened');
+			  
+			  var io = term.io.push();
+              io.onVTKeystroke = function(str) {
+                ws.send(str); // terminal -> websocket
+				ws.send("ls -l");
+				console.log(str);
+              };
+              io.sendString = function(str) {
+                ws.send(str);
+				ws.send("ls");
+				console.log(str);
+              };
+			  
             };
 			
 			/// add start
 			ws.onmessage = function(evt) {
               term.io.print(evt.data); // websocket -> terminal
+			  console.log(evt.data);
             };
             term.onTerminalReady = function() {
               var io = term.io.push();
               io.onVTKeystroke = function(str) {
                 ws.send(str); // terminal -> websocket
+				ws.send("123");
+				console.log(str);
               };
               io.sendString = function(str) {
                 ws.send(str);
+				ws.send("asd");
+				console.log(str);
               };
             };
 			///add end
