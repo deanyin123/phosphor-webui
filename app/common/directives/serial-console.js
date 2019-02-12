@@ -39,7 +39,6 @@ window.angular && (function(angular) {
             term.attach(ws);
             ws.onopen = function() {
               console.log('websocket opened');
-			  ws.send(str); // terminal -> websocket
 			  console.log("open");
             };
 			
