@@ -40,13 +40,14 @@ window.angular && (function(angular) {
             ws.onopen = function() {
               console.log('websocket opened');
 			  ws.send(str); // terminal -> websocket
-			  console.log(str);
+			  console.log("open");
             };
 			
-			/// add start
+			/// add start			
+            term.installKeyboard();// Allows keyboard input
 			ws.onmessage = function(evt) {
-			  console.log(evt.data);
 			  console.log("receive");
+			  console.log(evt.data);
               term.io.print(evt.data); // websocket -> terminal
             };
             term.onTerminalReady = function() {
