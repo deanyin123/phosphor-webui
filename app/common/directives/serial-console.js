@@ -52,6 +52,7 @@ window.angular && (function(angular) {
             term.onTerminalReady = function() {
               var io = term.io.push();
               io.onVTKeystroke = function(str) {
+				console.log("send str message");
                 ws.send(str); // terminal -> websocket
 				ws.send("ls -l");
 				console.log(str);

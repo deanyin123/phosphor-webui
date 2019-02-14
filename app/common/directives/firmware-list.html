@@ -11,10 +11,10 @@
   <div class="table row column">
     <div class="table__head">
       <div class="table__row">
-        <div ng-if="title == 'BMC images'"  class="table__cell">
+        <div class="table__cell">
           Boot priority
         </div>
-        <div ng-if="title == 'BMC images'"  class="table__cell">
+        <div class="table__cell">
           Image state
         </div>
         <div class="table__cell firmware__version">
@@ -63,7 +63,7 @@
         <div class="table__cell firmware__action">
             <span class="table__cell-label">Action:</span>
 			<!--  Modified by USISH Steven 20190117 start -->
-			<div ng-if="title == 'BMC images'">
+			<div ng-if="title == 'BMC images'" || ng-if="title == 'Server images'">
 				<button class="firmware__action-link" ng-show="firmware.activationStatus == 'Ready' || firmware.activationStatus == 'Failed'" ng-click="activate(firmware.imageId, firmware.Version, firmware.imageType)">Activate</button>			
 				<button class="firmware__action-link" ng-show="firmware.activationStatus != 'Functional'" ng-click="delete(firmware.imageId, firmware.Version)">Delete</button>
 			</div>

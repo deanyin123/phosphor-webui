@@ -372,7 +372,7 @@ window.angular && (function(angular) {
           $scope.firmwares = result.data;
           $scope.bmcActiveVersion = result.bmcActiveVersion;
 		  /*  Modified by USISH Steven 20190117 start */
-          //$scope.hostActiveVersion = result.hostActiveVersion;
+          $scope.hostActiveVersion = result.hostActiveVersion;
 		  /*  Modified by USISH Steven 20190117 end */
         });
       };
