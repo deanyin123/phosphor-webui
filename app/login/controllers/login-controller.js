@@ -32,6 +32,7 @@ window.angular && (function(angular) {
 
         if (!username || username == '' || !password || password == '' ||
             !host || host == '') {
+			$scope.error = true; // Judy add 20190322 for test
           return false;
         } else {
           $scope.dataService.setHost(host);
